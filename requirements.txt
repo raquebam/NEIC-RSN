@@ -1,0 +1,3 @@
+streamlit==1.18.1
+pandas==2.1.0
+usgs-libcomcat
