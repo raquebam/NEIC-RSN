@@ -73,7 +73,7 @@ def main():
     max_latitude = st.number_input("Latitud máxima", value=0.0)
     min_longitude = st.number_input("Longitud mínima", value=-0.0)
     max_longitude = st.number_input("Longitud máxima", value=-0.0)
-    min_mag = st.number_input("Magnitud mínima", value=1.0)
+    min_mag = st.number_input("Magnitud mínima", value=0.0)
     max_mag = st.number_input("Magnitud máxima", value=0.0)
 
     if 'event_data' not in st.session_state:
