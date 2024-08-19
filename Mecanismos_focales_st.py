@@ -66,8 +66,8 @@ def main():
     st.write("###### Para tensores de momento, visite la página: ...")
     st.write("#### Parámetros de búsqueda")
 
-    start_date = st.date_input("Fecha de inicio", value=datetime(2001, 9, 17))
-    end_date = st.date_input("Fecha de fin", value=datetime(2001, 9, 17))
+    start_date = st.date_input("Fecha de inicio", value=datetime(0000, 0, 00))
+    end_date = st.date_input("Fecha de fin", value=datetime(0000, 0, 00))
 
     min_latitude = st.number_input("Latitud mínima", value=0.0)
     max_latitude = st.number_input("Latitud máxima", value=0.0)
