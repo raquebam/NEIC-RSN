@@ -23,16 +23,17 @@ def fetch_earthquake_data(starttime, endtime, min_latitude, max_latitude, min_lo
                 if moment_tensor_products:
                     moment_tensor_product = moment_tensor_products[0]
 
-                    st.write(moment_tensor_products)
-                    
-                    strike1 = getattr(moment_tensor_product, 'nodal-plane-1-strike', 'N/A')
-                    dip1 = getattr(moment_tensor_product, 'nodal-plane-1-dip', 'N/A')
-                    rake1 = getattr(moment_tensor_product, 'nodal-plane-1-rake', 'N/A')
+                    product_info = moment_tensor_product._product
+                    properties = product_info.get('properties', {})
 
-                    strike2 = getattr(moment_tensor_product, 'nodal-plane-2-strike', 'N/A')
-                    dip2 = getattr(moment_tensor_product, 'nodal-plane-2-dip', 'N/A')
-                    rake2 = getattr(moment_tensor_product, 'nodal-plane-2-rake', 'N/A')
-                    
+                    strike1 = properties.get('nodal-plane-1-strike', 'N/A')
+                    dip1 = properties.get('nodal-plane-1-dip', 'N/A')
+                    rake1 = properties.get('nodal-plane-1-rake', 'N/A')
+
+                    strike2 = properties.get('nodal-plane-2-strike', 'N/A')
+                    dip2 = properties.get('nodal-plane-2-dip', 'N/A')
+                    rake2 = properties.get('nodal-plane-2-rake', 'N/A')
+
                     event_info = {
                         'id': event.id,
                         'time': event.time,
@@ -61,8 +62,7 @@ def fetch_earthquake_data(starttime, endtime, min_latitude, max_latitude, min_lo
     return event_data
 
 def main():
-    st.markdown("## Buscador de planos nodales de sismos usando el 'product type' de <u>tensores de momento</u> en la página del NEIC", unsafe_allow_html=True
-)
+    st.markdown("## Buscador de tensores de momento de sismos usando el 'product type' de <u>moment-tensor</u> en la página del NEIC", unsafe_allow_html=True)
     st.write("###### Para mecanismos focales, visite la página: https://neic-fm.streamlit.app/")
     st.write("#### Parámetros de búsqueda")
 
@@ -77,7 +77,7 @@ def main():
     max_mag = st.number_input("Magnitud máxima", value=0.0)
 
     if 'event_data' not in st.session_state:
-           st.session_state.event_data = None
+        st.session_state.event_data = None
 
     if 'file_name' not in st.session_state:
         st.session_state.file_name = "sismos_tensores_momento"
