@@ -19,20 +19,21 @@ def fetch_earthquake_data(starttime, endtime, min_latitude, max_latitude, min_lo
             try:
                 event_details = get_event_by_id(event.id)
                 focal_mechanism_products = event_details.getProducts('focal-mechanism')
-                
+
                 if focal_mechanism_products:
                     focal_mechanism_product = focal_mechanism_products[0]
 
-                    st.write(focal_mechanism_product)
-                    
-                    strike1 = getattr(focal_mechanism_product, 'nodal-plane-1-strike', 'N/A')
-                    dip1 = getattr(focal_mechanism_product, 'nodal-plane-1-dip', 'N/A')
-                    rake1 = getattr(focal_mechanism_product, 'nodal-plane-1-rake', 'N/A')
+                    product_info = focal_mechanism_product._product
+                    properties = product_info.get('properties', {})
 
-                    strike2 = getattr(focal_mechanism_product, 'nodal-plane-2-strike', 'N/A')
-                    dip2 = getattr(focal_mechanism_product, 'nodal-plane-2-dip', 'N/A')
-                    rake2 = getattr(focal_mechanism_product, 'nodal-plane-2-rake', 'N/A')
-                    
+                    strike1 = properties.get('nodal-plane-1-strike', 'N/A')
+                    dip1 = properties.get('nodal-plane-1-dip', 'N/A')
+                    rake1 = properties.get('nodal-plane-1-rake', 'N/A')
+
+                    strike2 = properties.get('nodal-plane-2-strike', 'N/A')
+                    dip2 = properties.get('nodal-plane-2-dip', 'N/A')
+                    rake2 = properties.get('nodal-plane-2-rake', 'N/A')
+
                     event_info = {
                         'id': event.id,
                         'time': event.time,
@@ -61,8 +62,7 @@ def fetch_earthquake_data(starttime, endtime, min_latitude, max_latitude, min_lo
     return event_data
 
 def main():
-    st.markdown("## Buscador de planos nodales de sismos usando el 'product type' de <u>mecanismos focales</u> en la página del NEIC", unsafe_allow_html=True
-)
+    st.markdown("## Buscador de planos nodales de sismos usando el 'product type' de <u>mecanismos focales</u> en la página del NEIC", unsafe_allow_html=True)
     st.write("###### Para tensores de momento, visite la página: https://neic-mt.streamlit.app/")
     st.write("#### Parámetros de búsqueda")
 
@@ -77,7 +77,7 @@ def main():
     max_mag = st.number_input("Magnitud máxima", value=0.0)
 
     if 'event_data' not in st.session_state:
-           st.session_state.event_data = None
+        st.session_state.event_data = None
 
     if 'file_name' not in st.session_state:
         st.session_state.file_name = "sismos_mecanismos_focales"
