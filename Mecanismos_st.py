@@ -63,7 +63,7 @@ def fetch_earthquake_data(starttime, endtime, min_latitude, max_latitude, min_lo
 def main():
     st.markdown("## Buscador de planos nodales de sismos usando el 'product type' de <u>mecanismos focales</u> en la página del NEIC", unsafe_allow_html=True
 )
-    st.write("###### Para tensores de momento, visite la página: ...")
+    st.write("###### Para tensores de momento, visite la página: https://neic-mt.streamlit.app/")
     st.write("#### Parámetros de búsqueda")
 
     start_date = st.date_input("Fecha de inicio", value=datetime(2001, 9, 17))
