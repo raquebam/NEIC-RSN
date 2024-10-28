@@ -62,7 +62,7 @@ def fetch_earthquake_data(starttime, endtime, min_latitude, max_latitude, min_lo
     return event_data
 
 def main():
-    st.markdown("## Buscador de tensores de momento de sismos usando el 'product type' de <u>tensores de momento</u> en la página del NEIC", unsafe_allow_html=True)
+    st.markdown("## Buscador de planos nodales usando el 'product type' de <u>tensores de momento</u> en la página del NEIC", unsafe_allow_html=True)
     st.write("###### Para mecanismos focales, visite la página: https://neic-fm.streamlit.app/")
     st.write("#### Parámetros de búsqueda")
 
