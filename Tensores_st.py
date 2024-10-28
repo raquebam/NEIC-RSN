@@ -67,14 +67,14 @@ def main():
     st.write("#### Parámetros de búsqueda")
 
     start_date = st.date_input("Fecha de inicio", value=datetime(2001, 9, 17))
-    end_date = st.date_input("Fecha de fin", value=datetime(2001, 9, 17))
+    end_date = st.date_input("Fecha de fin", value=datetime(2002, 9, 17))
 
-    min_latitude = st.number_input("Latitud mínima", value=0.0)
-    max_latitude = st.number_input("Latitud máxima", value=0.0)
-    min_longitude = st.number_input("Longitud mínima", value=-0.0)
-    max_longitude = st.number_input("Longitud máxima", value=-0.0)
-    min_mag = st.number_input("Magnitud mínima", value=1.0)
-    max_mag = st.number_input("Magnitud máxima", value=0.0)
+    min_latitude = st.number_input("Latitud mínima", value=7.0)
+    max_latitude = st.number_input("Latitud máxima", value=11.0)
+    min_longitude = st.number_input("Longitud mínima", value=-87.0)
+    max_longitude = st.number_input("Longitud máxima", value=-82.0)
+    min_mag = st.number_input("Magnitud mínima", value=0.0)
+    max_mag = st.number_input("Magnitud máxima", value=10.0)
 
     if 'event_data' not in st.session_state:
         st.session_state.event_data = None
